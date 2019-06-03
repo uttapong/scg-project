@@ -1,0 +1,14 @@
+.ant-slider-handle {
+  border: solid 2px rgba(73, 68, 170, 1) !important;
+}
+.ant-slider-dot-active {
+  border-color: rgba(73, 68, 170, 1);
+}
+.ant-slider-track {
+  background-color: rgba(73, 68, 170, 1);
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #fff;
+  opacity: 1; /* Firefox */
+}
