@@ -78,7 +78,11 @@
                       </div>
                     </div>
                     <div class="res-photo">
-                      <img :src="restaurant.photo">
+                      <img
+                        :src="restaurant.photo"
+                        alt="Image not found"
+                        onerror="this.src='noimage.png';"
+                      >
                     </div>
                   </div>
                   <template v-if="markers.length>1 && this.nextPageToken!=''">
@@ -149,7 +153,8 @@ export default {
   methods: {
     /*  Set place on search */
     setPlace(place) {
-      this.location = place;
+      console.log(place);
+      this.location = place.id ? place : null;
     },
     /*  Set radius on range slider change */
     changeRangeSlicer(value) {

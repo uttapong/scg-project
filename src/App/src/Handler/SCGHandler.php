@@ -22,7 +22,15 @@ class SCGHandler implements RequestHandlerInterface
     public function __construct(array $config) {
         $this->config = $config;
     }
-
+    
+    /**
+     *
+     * Handle request to /scg/search/:lat/:lng/:radius[/:token]  url  
+     *
+     * @param    request  $object http request object
+     * @return   JSON restaurant list from google place API as JSON
+     *
+     */
     public function handle(ServerRequestInterface $request) : ResponseInterface
     {
         $endPoint = $this->config['google_map']['endPoint'];
@@ -32,7 +40,7 @@ class SCGHandler implements RequestHandlerInterface
         $lng = str_replace(',','.',$request->getAttribute('lng','100.5081204'));
         $radius = $request->getAttribute('radius',1000);
         $pagetoken = $request->getQueryParams('next_page_token');
-            //    return new JsonResponse($pagetoken['next_page_token'],200,['Content-Type' => ['application/json'],'Access-Control-Allow-Origin' => ['*']]);
+            
         //Nearby restaurant search from specified lat,lng    
         if($pagetoken)
             $nearbySearchQuery = http_build_query([
@@ -51,9 +59,8 @@ class SCGHandler implements RequestHandlerInterface
                 'fields' => 'photos,formatted_address,name,rating,opening_hours,geometry',
             ]);  
 
-        $searchNearbyUrl = "{$endPoint}nearbysearch/json?{$nearbySearchQuery}";//die($searchNearbyUrl);
+        $searchNearbyUrl = "{$endPoint}nearbysearch/json?{$nearbySearchQuery}";
         $responseNearbySearch = json_decode(file_get_contents($searchNearbyUrl),true);
-        // $redis->set('location_'.$searchLocation, serialize ($responseList['results']));
         return new JsonResponse($responseNearbySearch,200,['Content-Type' => ['application/json'],'Access-Control-Allow-Origin' => ['*']]);
     }
 }

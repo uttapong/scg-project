@@ -17,7 +17,16 @@ class CacheMiddleware implements PsrInterface
         $this->config = $config;
        
     }
-
+    
+    /**
+     *
+     * Handle request to /scg/search/:lat/:lng/:radius[/:token]  url  
+     *
+     * @param    request  $object http request object
+     * @param    handler  $object http response handling object
+     * @return   response http esponse object
+     *
+     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler) : ResponseInterface
     {
         $url  = str_replace('/', '_', $request->getUri()->getPath());

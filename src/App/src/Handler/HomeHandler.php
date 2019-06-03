@@ -24,6 +24,15 @@ class HomeHandler implements RequestHandlerInterface
         
         $this->template      = $template;
     }
+
+    /**
+     *
+     * Handle request to / (root) url   
+     *
+     * @param    request  $object http request object
+     * @return   HtmlResponse  page embed VueJS ad frontend view
+     *
+     */
     public function handle(ServerRequestInterface $request) : ResponseInterface
     {
         if ($this->template === null) {
