@@ -1,6 +1,6 @@
 # SCG-PROJECT
 
-SCG Assignment: Build-ready software run on browser
+SCG Assignment: Build-ready software run on browser (desktop only version)
 
 to run
 
