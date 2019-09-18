@@ -12,3 +12,6 @@
   color: #fff;
   opacity: 1; /* Firefox */
 }
+.container-fluid {
+  margin-top: 60px;
+}
